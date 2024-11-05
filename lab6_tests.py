@@ -64,18 +64,45 @@ class TestCases(unittest.TestCase):
 
 
     # Part 1
+    import unittest
+    from lab6 import Book, selection_sort_books
 
+    class TestSelectionSortBooks(unittest.TestCase):
+        def test_empty_list(self):
+            self.assertEqual(selection_sort_books([]), [])
+
+        def test_sort_books_by_title(self):
+            book1 = Book("C Programming")
+            book2 = Book("Java Programming")
+            book3 = Book("Python Programming")
+            books = [book3, book1, book2]
+            sorted_books = selection_sort_books(books)
+            self.assertEqual([book.title for book in sorted_books],
+                             ["C Programming", "Java Programming", "Python Programming"])
 
     # Part 2
+    class TestSwapCase(unittest.TestCase):
+        def test_simple_case(self):
+            self.assertEqual(swap_case("Hello World"), "hELLO wORLD")
 
+        def test_mixed_characters(self):
+            self.assertEqual(swap_case("PyThOn3!"), "pYtHoN3!")
 
     # Part 3
+    class TestStrTranslate(unittest.TestCase):
+        def test_replacement(self):
+            self.assertEqual(str_translate("abcdcba", "a", "x"), "xbcdcbx")
 
+        def test_no_occurrence(self):
+            self.assertEqual(str_translate("hello", "z", "y"), "hello")
 
     # Part 4
+    class TestHistogram(unittest.TestCase):
+        def test_single_word(self):
+            self.assertEqual(histogram("hello"), {"hello": 1})
 
-
-
+        def test_multiple_words(self):
+            self.assertEqual(histogram("hello world hello"), {"hello": 2, "world": 1})
 
 
 if __name__ == '__main__':
