@@ -37,12 +37,50 @@ def selection_sort(values:list[int]) -> None:
 
 
 # Part 1
+from typing import List
+
+class Book:
+    def __init__(self, title: str):
+        self.title = title
+
+def selection_sort_books(books: List[Book]) -> List[Book]:
+    """Sort a list of Book objects alphabetically by title."""
+    n = len(books)
+    for i in range(n):
+        min_index = i
+        for j in range(i + 1, n):
+            if books[j].title < books[min_index].title:
+                min_index = j
+        books[i], books[min_index] = books[min_index], books[i]
+    return books
 
 
 # Part 2
+def swap_case(text: str) -> str:
+    """Return a string with lowercase letters converted to uppercase and vice versa."""
+    return ''.join(char.lower() if char.isupper() else char.upper() for char in text)
 
 
 # Part 3
+def str_translate(text: str, old: str, new: str) -> str:
+    """Return a new string with each occurrence of `old` replaced by `new`."""
+    result = ""
+    for char in text:
+        if char == old:
+            result += new
+        else:
+            result += char
+    return result
 
 
 # Part 4
+def histogram(text: str) -> dict:
+    """Return a dictionary with word counts from the input string."""
+    word_counts = {}
+    words = text.split()
+    for word in words:
+        if word in word_counts:
+            word_counts[word] += 1
+        else:
+            word_counts[word] = 1
+    return word_counts
